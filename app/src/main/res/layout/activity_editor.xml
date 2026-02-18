@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1A1A2E">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#16213E">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Audio Editor"
+            app:titleTextColor="#FFFFFF" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/infoText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No audio loaded"
+                android:textColor="#99FFFFFF"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:padding="8dp" />
+
+            <com.audioslice.pro.waveform.WaveformEditorView
+                android:id="@+id/waveformView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="8dp"
+                android:background="#16213E" />
+
+            <TextView
+                android:id="@+id/selectionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selection: 0:00 - 0:00"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:padding="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <Button android:id="@+id/zoomOutButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="-" android:backgroundTint="#E94560" />
+                <Button android:id="@+id/zoomResetButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reset" android:layout_marginHorizontal="8dp" android:backgroundTint="#0F3460" />
+                <Button android:id="@+id/zoomInButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+" android:backgroundTint="#E94560" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="8dp">
+
+                <Button android:id="@+id/selectAllButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Select All" android:backgroundTint="#0F3460" />
+                <Button android:id="@+id/cutButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cut" android:layout_marginStart="8dp" android:backgroundTint="#E94560" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Effects"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.chip.Chip android:id="@+id/normalizeButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Normalize" />
+                <com.google.android.material.chip.Chip android:id="@+id/voiceEnhanceButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Voice Enhance" />
+                <com.google.android.material.chip.Chip android:id="@+id/noiseReductionButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Noise Reduction" />
+                <com.google.android.material.chip.Chip android:id="@+id/reverbButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reverb" />
+                <com.google.android.material.chip.Chip android:id="@+id/bassBoostButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Bass Boost" />
+                <com.google.android.material.chip.Chip android:id="@+id/removeSilenceButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Remove Silence" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Speed" android:textColor="#FFFFFF" android:textSize="16sp" android:layout_marginTop="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.slider.Slider android:id="@+id/speedSlider" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:valueFrom="0.5" android:valueTo="2.0" android:value="1.0" android:stepSize="0.1" />
+                <TextView android:id="@+id/speedValue" android:layout_width="50dp" android:layout_height="wrap_content" android:text="1.0x" android:textColor="#FFFFFF" android:gravity="end" />
+                <Button android:id="@+id/applySpeedButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Apply" android:layout_marginStart="8dp" android:backgroundTint="#E94560" />
+
+            </LinearLayout>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Pitch (semitones)" android:textColor="#FFFFFF" android:textSize="16sp" android:layout_marginTop="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.slider.Slider android:id="@+id/pitchSlider" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:valueFrom="-12" android:valueTo="12" android:value="0" android:stepSize="1" />
+                <TextView android:id="@+id/pitchValue" android:layout_width="50dp" android:layout_height="wrap_content" android:text="0 st" android:textColor="#FFFFFF" android:gravity="end" />
+                <Button android:id="@+id/applyPitchButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Apply" android:layout_marginStart="8dp" android:backgroundTint="#E94560" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <FrameLayout
+        android:id="@+id/loadingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#CC000000"
+        android:visibility="gone">
+
+        <ProgressBar android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" />
+
+    </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_gravity="bottom"
+        android:visibility="gone"
+        android:progressTint="#E94560" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
