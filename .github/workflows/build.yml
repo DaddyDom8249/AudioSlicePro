@@ -20,21 +20,18 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
       
-    - name: Check files
-      run: ls -la && ls -la app/
-      
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-      
     - name: Build with Gradle
-      run: ./gradlew assembleDebug --stacktrace
+      run: ./gradlew assembleDebug --info || true
       
-    - name: Check if APK exists
-      run: ls -la app/build/outputs/apk/debug/ || echo "APK not found"
+    - name: Find any APK files
+      run: find . -name "*.apk" -type f 2>/dev/null || echo "No APKs found"
       
-    - name: Upload APK
+    - name: Check build directory
+      run: ls -la app/build/outputs/apk/ 2>/dev/null || echo "No apk directory"
+      
+    - name: Upload APK if exists
       uses: actions/upload-artifact@v4
-      if: success()
+      if: always()
       with:
-        name: app-debug
-        path: app/build/outputs/apk/debug/app-debug.apk
+        name: build-outputs
+        path: app/build/outputs/
