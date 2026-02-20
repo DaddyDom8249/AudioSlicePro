@@ -20,17 +20,26 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
       
-    - name: Check gradlew exists
+    - name: Check files
       run: |
-        ls -la gradlew
-        file gradlew
-      
-    - name: Build with Gradle
-      run: ./gradlew assembleDebug --stacktrace
-      
-    - name: Upload APK
+        ls -la
+        ls -la gradle/wrapper/
+        
+    - name: Build with Gradle (verbose)
+      run: |
+        ./gradlew assembleDebug --info --stacktrace 2>&1 | head -100
+        echo "=== BUILD EXIT CODE: $? ==="
+        
+    - name: Check build outputs
+      run: |
+        find . -name "*.apk" 2>/dev/null || echo "No APK found"
+        ls -la app/build/outputs/ 2>/dev/null || echo "No outputs dir"
+        
+    - name: Upload APK if exists
       uses: actions/upload-artifact@v4
-      if: success()
+      if: always()
       with:
-        name: app-debug
-        path: app/build/outputs/apk/debug/app-debug.apk
+        name: build-outputs
+        path: |
+          app/build/outputs/
+          build.log
