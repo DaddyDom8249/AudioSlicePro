@@ -20,15 +20,17 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
       
-    - name: Install system gradle
+    - name: Install Gradle 8.4
       run: |
-        sudo apt-get update
-        sudo apt-get install -y gradle
+        wget https://services.gradle.org/distributions/gradle-8.4-bin.zip
+        unzip gradle-8.4-bin.zip
+        sudo mv gradle-8.4 /opt/gradle
+        sudo ln -s /opt/gradle/bin/gradle /usr/local/bin/gradle
         
     - name: Create local.properties
       run: echo "sdk.dir=$ANDROID_HOME" > local.properties
       
-    - name: Build with system gradle
+    - name: Build with Gradle 8.4
       run: gradle assembleDebug --stacktrace
       
     - name: Check build outputs
