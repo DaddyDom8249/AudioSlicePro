@@ -16,11 +16,12 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="48dp" />
 
-    <com.audioslice.pro.waveform.WaveformEditorView
+    <View
         android:id="@+id/waveformView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="32dp"
+        android:background="#16213E" />
 
     <TextView
         android:id="@+id/statusText"
@@ -31,47 +32,20 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/recordButton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:text="Record"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp" />
+
+    <Button
+        android:id="@+id/openEditorButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="24dp">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/recordButton"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:text="● Record"
-            android:textColor="#FFFFFF"
-            app:cornerRadius="60dp"
-            android:backgroundTint="#E94560" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="16dp">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Save"
-            android:enabled="false"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="#0F3460" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/openEditorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Open Editor"
-            android:backgroundTint="#E94560" />
-
-    </LinearLayout>
+        android:text="Open Editor"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp" />
 
 </LinearLayout>
